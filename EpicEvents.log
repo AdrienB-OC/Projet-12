@@ -72,3 +72,23 @@ Bad Request: /event/
 "POST /event/ HTTP/1.1" 400 128
 Bad Request: /event/
 "POST /event/ HTTP/1.1" 400 128
+Forbidden: /event/11/
+"PUT /event/11/ HTTP/1.1" 403 63
+Bad Request: /event/11/
+"PUT /event/11/ HTTP/1.1" 400 42
+Forbidden: /event/11/
+"DELETE /event/11/ HTTP/1.1" 403 63
+Forbidden: /client/
+"POST /client/ HTTP/1.1" 403 63
+Bad Request: /client/
+"POST /client/ HTTP/1.1" 400 52
+Forbidden: /client/1/
+"PATCH /client/1/ HTTP/1.1" 403 63
+Bad Request: /token/
+"POST /token/ HTTP/1.1" 400 37
+Forbidden: /client/1/
+"GET /client/1/ HTTP/1.1" 403 63
+Forbidden: /event/10/
+"PATCH /event/10/ HTTP/1.1" 403 63
+Forbidden: /event/9/
+"DELETE /event/9/ HTTP/1.1" 403 63
