@@ -92,3 +92,9 @@ Forbidden: /event/10/
 "PATCH /event/10/ HTTP/1.1" 403 63
 Forbidden: /event/9/
 "DELETE /event/9/ HTTP/1.1" 403 63
+Unauthorized: /client/
+"GET /client/ HTTP/1.1" 401 183
+Forbidden: /client/1/
+"GET /client/1/ HTTP/1.1" 403 63
+Forbidden: /client/1/
+"PUT /client/1/ HTTP/1.1" 403 63

@@ -7,6 +7,8 @@ class IsSupport(permissions.BasePermission):
         return True
 
     def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
         if isinstance(obj, Event):
             return obj.support_contact == request.user
 
@@ -18,6 +20,8 @@ class IsSale(permissions.BasePermission):
         return True
 
     def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
         if isinstance(obj, Client) or isinstance(obj, Contract):
             return obj.sales_contact == request.user
 
