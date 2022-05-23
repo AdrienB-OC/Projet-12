@@ -47,21 +47,7 @@ pip(3) install -r requirements.txt
 In pgAdmin 4 create a new database then right click on it and select "Restore...". Browse to the folder in which you extracted the repository and select the "EpicEvents.sql" file.
 You then need to change the DATABASE settings in the settings.py file accordingly (NAME, USER and PASSWORD)
 
-### 4 - Create a superuser to be able to access the django admin interface and the API endpoints
-
-Windows
-```
-(venv) manage.py createsuperuser
-
-```
-Unix/mac
-```
-(venv) python3 manage.py createsuperuser
-```
-
-Role should be set to Admin
-
-### 5 - Run the server and access the django admin interface/the API endpoints
+### 4 - Run the server and access the django admin interface/the API endpoints
 
 
 Windows
@@ -78,6 +64,8 @@ You can access the interface using this link :
 ```
 http://127.0.0.1:8000/admin/
 ```
+Username : Admin
+Password : test123
 
 The API endpoints are as follow:
 ##### Register : (POST)
