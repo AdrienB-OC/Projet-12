@@ -1,51 +1,111 @@
-# gudlift-registration
+# EpicEvents
 
-1. Why
-
-
-    This is a proof of concept (POC) project to show a light-weight version of our competition booking platform. The aim is the keep things as light as possible, and use feedback from the users to iterate.
-
-2. Getting Started
-
-    This project uses the following technologies:
-
-    * Python v3.x+
-
-    * [Flask](https://flask.palletsprojects.com/en/1.1.x/)
-
-        Whereas Django does a lot of things for us out of the box, Flask allows us to add only what we need. 
-     
-
-    * [Virtual environment](https://virtualenv.pypa.io/en/stable/installation.html)
-
-        This ensures you'll be able to install the correct packages without interfering with Python on your machine.
-
-        Before you begin, please ensure you have this installed globally. 
+# How to run the server locally :
 
 
-3. Installation
+Extract the repository's files in a folder of your choosing
 
-    - After cloning, change into the directory and type <code>virtualenv .</code>. This will then set up a a virtual python environment within that directory.
+### 1 - Setup the virtual environment :
 
-    - Next, type <code>source bin/activate</code>. You should see that your command prompt has changed to the name of the folder. This means that you can install packages in here without affecting affecting files outside. To deactivate, type <code>deactivate</code>
 
-    - Rather than hunting around for the packages you need, you can install in one step. Type <code>pip install -r requirements.txt</code>. This will install all the packages listed in the respective file. If you install a package, make sure others know by updating the requirements.txt file. An easy way to do this is <code>pip freeze > requirements.txt</code>
+In your command bash/shell go in the folder containing the files
 
-    - Flask requires that you set an environmental variable to the python file. However you do that, you'll want to set the file to be <code>server.py</code>. Check [here](https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application) for more details
+Type :  
+Windows :
+```
+py -m venv venv
+```
+Unix/mac :
+```
+python3 -m venv venv
+```
 
-    - You should now be ready to test the application. In the directory, type either <code>flask run</code> or <code>python -m flask run</code>. The app should respond with an address you should be able to go to using your browser.
 
-4. Current Setup
+You then need to activate the virtual environment :  
+Windows :
+```
+.\venv\Scripts\activate
+```
+Unix/mac :  
+```
+source venv/bin/activate
+```
+(venv) should now be displayed to the left of your command line :
+```
+(venv) C:\>
+```
 
-    The app is powered by [JSON files](https://www.tutorialspoint.com/json/json_quick_guide.htm). This is to get around having a DB until we actually need one. The main ones are:
-     
-    * competitions.json - list of competitions
-    * clubs.json - list of clubs with relevant information. You can look here to see what email addresses the app will accept for login.
+### 2 - Install the libraries required to run the server :
 
-5. Testing
+In the virtual environment (command bash/shell), go in the project's main folder (with the main.py file) and type : 
+```
+pip(3) install -r requirements.txt
+```
 
-    You are free to use whatever testing framework you like-the main thing is that you can show what tests you are using.
+### 3 - Setup the PostgreSQL database (Example using pgAdmin 4) :
 
-    We also like to show how well we're testing, so there's a module called 
-    [coverage](https://coverage.readthedocs.io/en/coverage-5.1/) you should add to your project.
+In pgAdmin 4 create a new database then right click on it and select "Restore...". Browse to the folder in which you extracted the repository and select the "EpicEvents.sql" file.
+You then need to change the DATABASE settings in the settings.py file accordingly (NAME, USER and PASSWORD)
 
+### 4 - Create a superuser to be able to access the django admin interface and the API endpoints
+
+Windows
+```
+(venv) manage.py createsuperuser
+
+```
+Unix/mac
+```
+(venv) python3 manage.py createsuperuser
+```
+
+Role should be set to Admin
+
+### 5 - Run the server and access the django admin interface/the API endpoints
+
+
+Windows
+```
+(venv) manage.py runserver
+
+```
+Unix/mac
+```
+(venv) python3 manage.py runserver
+```
+
+You can access the interface using this link :
+```
+http://127.0.0.1:8000/admin/
+```
+
+The API endpoints are as follow:
+##### Register : (POST)
+```
+http://127.0.0.1:8000/register/
+```
+
+##### Authenticate: (POST)
+```
+http://127.0.0.1:8000/token/
+```
+
+##### Clients: (POST, GET, PUT, PATCH)
+```
+http://127.0.0.1:8000/client/<optional pk>/
+```
+
+##### Contracts: (POST, GET, PUT, PATCH)
+```
+http://127.0.0.1:8000/contract/<optional pk>/
+```
+
+##### Contract Statuses: (POST, GET, PUT, PATCH)
+```
+http://127.0.0.1:8000/contract_status/<optional pk>/
+```
+
+##### Events: (POST, GET, PUT, PATCH)
+```
+http://127.0.0.1:8000/event/<optional pk>/
+```
