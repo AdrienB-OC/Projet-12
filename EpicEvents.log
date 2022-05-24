@@ -98,3 +98,4 @@ Forbidden: /client/1/
 "GET /client/1/ HTTP/1.1" 403 63
 Forbidden: /client/1/
 "PUT /client/1/ HTTP/1.1" 403 63
+Not Found: /favicon.ico

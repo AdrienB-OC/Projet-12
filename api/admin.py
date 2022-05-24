@@ -6,7 +6,7 @@ class ClientAdmin(admin.ModelAdmin):
     list_display = ('email', 'first_name', 'last_name', 'company_name',
                     'phone', 'mobile')
     readonly_fields = ('date_created', 'date_updated')
-    search_fields = ('first_name', 'last_name', 'company_name')
+    search_fields = ('first_name', 'last_name', 'email')
 
     fieldsets = (
         ('Client Information', {
@@ -64,7 +64,7 @@ class ClientAdmin(admin.ModelAdmin):
 class ContractAdmin(admin.ModelAdmin):
     list_display = ('client', 'sales_contact', 'amount', 'payment_due')
     search_fields = ('client__first_name', 'client__last_name',
-                     'sales_contact__email', 'payment_due')
+                     'amount', 'date_created')
     fieldsets = (
         ('Contract Information', {
             'fields': (
@@ -169,8 +169,8 @@ class ContractStatusAdmin(admin.ModelAdmin):
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ('event_status', 'event_date', 'client', 'support_contact')
-    search_fields = ('event_status', 'client__first_name',
-                     'client__last_name', 'support_contact__email')
+    search_fields = ('event_date', 'client__first_name',
+                     'client__last_name', 'client__email')
 
     fieldsets = (
         ('Event Information', {
